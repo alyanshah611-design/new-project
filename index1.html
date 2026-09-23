@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexFitness | Premium Gym & Fitness Center</title>
+    <style>
+        /* --- RESET & BASIC STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #111;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        /* --- VARIABLES --- */
+        :root {
+            --primary-color: #ff3e3e;
+            --secondary-color: #1a1a1a;
+            --text-gray: #ccc;
+        }
+
+        /* --- HEADER & NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            transition: color 0.3s;
+            text-transform: uppercase;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://unsplash.com') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 12px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #cc3232;
+            transform: scale(1.05);
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 100px 50px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background-color: var(--primary-color);
+            bottom: -10px;
+            left: 25%;
+        }
+
+        /* --- SERVICES / FEATURES --- */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .service-box {
+            background-color: var(--secondary-color);
+            padding: 40px 20px;
+            border-radius: 8px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .service-box:hover {
+            border-bottom: 3px solid var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .service-box h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .service-box p {
+            color: var(--text-gray);
+            font-size: 15px;
+        }
+
+        /* --- BMI CALCULATOR SECTION (NEW) --- */
+        .bmi-section {
+            background-color: #151515;
+        }
+        .bmi-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .bmi-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background-color: #222;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .bmi-result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* --- PRICING PLANS --- */
+        .pricing {
+            background-color: #111;
+        }
+
+        .plans-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .plan-card {
+            background-color: var(--secondary-color);
+            padding: 40px 30px;
+            border-radius: 8px;
+            width: 320px;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+        }
+
+        .plan-card.active {
+            border: 2px solid var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .plan-card h3 {
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .plan-price {
+            font-size: 45px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .plan-price span {
+            font-size: 16px;
+            color: var(--text-gray);
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            margin-bottom: 12px;
+            color: var(--text-gray);
+        }
+
+        .plan-features li::before {
+            content: "✓ ";
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* --- CONTACT --- */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: #222;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #050505;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            nav ul {
+                margin-top: 15px;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+            .hero h1 {
+                font-size: 40px;
+            }
+            section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="logo">Flex<span>Fitness</span></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#bmi">BMI Calculator</a></li>
+                <li><a href="#pricing">Plans</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <h1>No Pain, No <span>Gain</span></h1>
+        <p>Apni body ko transform karein. Aaj hi join karein Pakistan ki sab se behtareen fitness community aur panein man-chaha result.</p>
+        <a href="#pricing" class="btn">Join Us Now</a>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-container">
+            <div class="service-box">
+                <h3>Weight Lifting</h3>
+                <p>Heavy lifting aur muscle building ke liye top-quality machines aur professional guidance.</p>
+            </div>
+            <div class="service-box">
+                <h3>Cardio Training</h3>
+                <p>Fat loss aur stamina barhane ke liye high-intensity cardio exercises aur modern treadmills.</p>
+            </div>
+            <div class="service-box">
+                <h3>Diet Plans</h3>
+                <p>Aap ki body aur goals ke mutabiq customized healthy diet aur nutrition charts.</p>
+            </div>
